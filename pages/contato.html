@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contato - Cesovat</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/contato.css" />
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="nav-container">
+        <div class="logo-box">CESOVAT</div>
+        <nav class="nav-menu">
+          <a href="index.html">Home</a>
+          <a href="sobre-nos.html">Sobre Nós</a>
+          <a href="servicos.html">Serviços</a>
+          <a href="empresas.html">Empresas</a>
+          <a href="contato.html" class="active">Contato</a>
+        </nav>
+        <button class="btn-agendar-nav">Agendar Exame</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="contato-destaque">
+        <div class="container">
+          <div class="destaque-conteudo">
+            <h1>Entre em Contato</h1>
+            <p>
+              Estamos prontos para atender sua empresa. Entre em contato conosco
+              para agendar exames ou solicitar uma proposta personalizada.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-16 fundo-branco">
+        <div class="container">
+          <div class="layout-contato">
+            <div class="col-form">
+              <div class="caixa-form">
+                <h2>Envie sua mensagem</h2>
+
+                <div class="formulario">
+                  <div class="linha-form">
+                    <div class="grupo-form">
+                      <label>Nome completo *</label>
+                      <input type="text" readonly class="controle-form" />
+                    </div>
+                    <div class="grupo-form">
+                      <label>E-mail *</label>
+                      <input type="email" readonly class="controle-form" />
+                    </div>
+                  </div>
+
+                  <div class="linha-form">
+                    <div class="grupo-form">
+                      <label>Telefone *</label>
+                      <input type="tel" readonly class="controle-form" />
+                    </div>
+                    <div class="grupo-form">
+                      <label>Empresa</label>
+                      <input type="text" readonly class="controle-form" />
+                    </div>
+                  </div>
+
+                  <div class="grupo-form">
+                    <label>Assunto *</label>
+                    <select disabled class="controle-form">
+                      <option value="">Selecione um assunto</option>
+                      <option value="agendamento">Agendamento de Exames</option>
+                      <option value="proposta">
+                        Solicitar Proposta Comercial
+                      </option>
+                      <option value="pcmso">PCMSO / PGR / LTCAT</option>
+                      <option value="duvidas">Dúvidas Gerais</option>
+                      <option value="outros">Outros</option>
+                    </select>
+                  </div>
+
+                  <div class="grupo-form">
+                    <label>Mensagem *</label>
+                    <textarea
+                      readonly
+                      rows="6"
+                      class="controle-form area-texto"
+                    ></textarea>
+                  </div>
+
+                  <button type="button" class="btn-enviar">
+                    <span class="material-icons-outlined">send</span>
+                    Enviar Mensagem
+                  </button>
+                </div>
+              </div>
+
+              <div class="acao-whatsapp">
+                <a href="#" class="btn-whatsapp">
+                  <span class="material-icons-outlined">chat</span>
+                  Fale conosco pelo WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <div class="col-info">
+              <div class="cartao-info-contato">
+                <div class="caixa-icone fundo-primario-claro">
+                  <span class="material-icons-outlined texto-primario"
+                    >location_on</span
+                  >
+                </div>
+                <div>
+                  <h3>Endereço</h3>
+                  <p>
+                    Av. Paulista, 1000<br />Bela Vista - São Paulo, SP<br />CEP:
+                    01310-100
+                  </p>
+                </div>
+              </div>
+
+              <div class="cartao-info-contato">
+                <div class="caixa-icone fundo-primario-claro">
+                  <span class="material-icons-outlined texto-primario"
+                    >call</span
+                  >
+                </div>
+                <div>
+                  <h3>Telefone</h3>
+                  <p>(11) 1234-5678<br />(11) 91234-5678</p>
+                </div>
+              </div>
+
+              <div class="cartao-info-contato">
+                <div class="caixa-icone fundo-primario-claro">
+                  <span class="material-icons-outlined texto-primario"
+                    >mail</span
+                  >
+                </div>
+                <div>
+                  <h3>E-mail</h3>
+                  <p>contato@cesovat.com.br<br />comercial@cesovat.com.br</p>
+                </div>
+              </div>
+
+              <div class="cartao-info-contato">
+                <div class="caixa-icone fundo-primario-claro">
+                  <span class="material-icons-outlined texto-primario"
+                    >schedule</span
+                  >
+                </div>
+                <div>
+                  <h3>Horário de Atendimento</h3>
+                  <p>Segunda a Sexta<br />08:00 às 18:00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-16 fundo-cinza">
+        <div class="container">
+          <h2
+            class="texto-centralizado mb-6"
+            style="font-size: 1.5rem; color: #0f172a"
+          >
+            Nossa Localização
+          </h2>
+          <div class="mapa-container">
+            <div class="mapa-placeholder">
+              <span class="material-icons-outlined icone-mapa texto-primario"
+                >location_on</span
+              >
+              <p>Mapa interativo - Av. Paulista, 1000</p>
+              <p class="mapa-texto-secundario">(Integração com Google Maps)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="logo-box mini">CESOVAT</div>
+          <p>
+            Saúde ocupacional e segurança do trabalho com excelência e
+            confiança.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <a href="index.html">Home</a>
+          <a href="sobre-nos.html">Sobre Nós</a>
+          <a href="servicos.html">Serviços</a>
+          <a href="empresas.html">Empresas</a>
+          <a href="contato.html">Contato</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <p>
+            <span class="material-icons-outlined">call</span> (11) 1234-5678
+          </p>
+          <p>
+            <span class="material-icons-outlined">mail</span>
+            contato@cesovat.com.br
+          </p>
+          <p>
+            <span class="material-icons-outlined">location_on</span> Av. Djalma
+            Dutra, 695 - Garanhuns, PE
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Horário</h4>
+          <p>
+            <span class="material-icons-outlined">schedule</span> Segunda a
+            Sexta<br />08:00 às 18:00
+          </p>
+        </div>
+      </div>
+      <div class="copyright">© 2026 CESOVAT. Todos os direitos reservados.</div>
+    </footer>
+  </body>
+</html>
