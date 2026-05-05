@@ -1,0 +1,252 @@
+.flex-2-colunas,
+.flex-3-colunas {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .flex-3-colunas {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .flex-3-colunas > * {
+    flex: 1 1 calc(33.333% - 1.333rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .flex-2-colunas {
+    flex-direction: row;
+  }
+  .flex-2-colunas > * {
+    flex: 1 1 calc(50% - 1.5rem);
+  }
+
+  .alinhar-centro {
+    align-items: center;
+  }
+}
+
+.texto-centralizado {
+  text-align: center;
+}
+
+.texto-primario {
+  color: #0284c7;
+}
+.texto-destaque {
+  color: #38bdf8;
+}
+.texto-branco {
+  color: #ffffff;
+}
+
+.fundo-primario-claro {
+  background-color: rgba(2, 132, 199, 0.1);
+}
+.fundo-destaque-claro {
+  background-color: rgba(56, 189, 248, 0.1);
+}
+.arredondado-total {
+  border-radius: 9999px;
+}
+
+.sobre-hero {
+  background: linear-gradient(to bottom right, #f0f9ff, #ffffff);
+  padding: 4rem 0;
+}
+
+.hero-conteudo {
+  max-width: 48rem;
+}
+
+.hero-conteudo h1 {
+  font-size: 2.25rem;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+  .hero-conteudo h1 {
+    font-size: 3rem;
+  }
+}
+
+.hero-conteudo p {
+  font-size: 1.125rem;
+  color: #475569;
+}
+
+.sobre-historia {
+  padding: 4rem 0;
+  background-color: #ffffff;
+}
+
+.sobre-historia h2 {
+  font-size: 1.875rem;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+}
+
+.historia-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.historia-imagem,
+.equipe-imagem {
+  position: relative;
+}
+
+.espaco-imagem {
+  aspect-ratio: 4 / 3;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.espaco-imagem:not(.espaco-escuro) {
+  background: linear-gradient(
+    to bottom right,
+    rgba(2, 132, 199, 0.2),
+    rgba(56, 189, 248, 0.2)
+  );
+}
+
+.espaco-escuro {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+.icone-grande {
+  font-size: 6.25rem;
+  margin-bottom: 1rem;
+}
+
+.espaco-imagem p {
+  color: #334155;
+}
+
+.sobre-missao-visao {
+  padding: 4rem 0;
+  background-color: #f8fafc;
+}
+
+.cartao-info {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.caixa-icone {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.caixa-icone span {
+  font-size: 2rem;
+}
+
+.cartao-info h2 {
+  font-size: 1.5rem;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+.cartao-info p {
+  color: #475569;
+  line-height: 1.6;
+}
+
+.sobre-valores {
+  padding: 4rem 0;
+  background-color: #ffffff;
+}
+.valores-cabecalho {
+  margin-bottom: 3rem;
+}
+.valores-cabecalho h2 {
+  font-size: 1.875rem;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+.valores-cabecalho p {
+  font-size: 1.125rem;
+  color: #475569;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.cartao-valor {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background-color: #f8fafc;
+  transition: background-color 0.2s ease;
+}
+
+.cartao-valor:hover {
+  background-color: #f1f5f9;
+}
+.icone-valor {
+  background-color: rgba(2, 132, 199, 0.1);
+  margin: 0 auto 1rem auto;
+}
+.cartao-valor h3 {
+  font-size: 1.25rem;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+.cartao-valor p {
+  color: #475569;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.sobre-equipe {
+  padding: 4rem 0;
+  background: linear-gradient(to bottom right, #0284c7, #0369a1);
+  color: #ffffff;
+}
+
+.sobre-equipe h2 {
+  font-size: 1.875rem;
+  margin-bottom: 1.5rem;
+}
+.equipe-descricao {
+  color: #e0f2fe;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.equipe-lista {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: #e0f2fe;
+}
+
+.equipe-lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.icone-check {
+  font-weight: bold;
+}
