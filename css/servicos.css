@@ -100,6 +100,17 @@
   flex-shrink: 0;
 }
 
+.caixa-icone {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 .icone-pequeno {
   width: 3rem;
   height: 3rem;
@@ -110,13 +121,13 @@
   background-color: rgba(2, 102, 179, 0.1);
 }
 .fundo-destaque-claro {
-  background-color: rgba(234, 179, 8, 0.1);
+  background-color: #10B98133;
 }
 .texto-primario {
   color: #0266b3;
 }
 .texto-destaque {
-  color: #eab308;
+  color: #10B981;
 }
 
 .cartao-ocupacional h3 {
@@ -230,12 +241,12 @@
 }
 
 .btn-solicitar {
-  background-color: #eab308;
+  background-color: #10B981;
   color: #ffffff;
 }
 
 .btn-solicitar:hover {
-  background-color: #ca8a04;
+  background-color: #0f805f;
 }
 
 .btn-empresas {

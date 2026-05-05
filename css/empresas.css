@@ -24,13 +24,13 @@
   color: #0266b3;
 }
 .texto-destaque {
-  color: #eab308;
+  color: #10B981;
 }
 .fundo-primario-claro {
   background-color: rgba(2, 102, 179, 0.1);
 }
 .fundo-destaque-claro {
-  background-color: rgba(234, 179, 8, 0.2);
+  background-color: #10B98133;
 }
 
 .empresas-destaque {
@@ -44,8 +44,8 @@
 
 .tag-solucoes {
   display: inline-block;
-  background-color: rgba(234, 179, 8, 0.2);
-  color: #ca8a04;
+  background-color: #10B98133;
+  color: #10B981;
   padding: 0.25rem 1rem;
   border-radius: 9999px;
   font-size: 0.875rem;
@@ -78,12 +78,12 @@
 }
 
 .btn-destaque {
-  background-color: #eab308;
+  background-color: #10B981;
   color: #ffffff;
 }
 
 .btn-destaque:hover {
-  background-color: #ca8a04;
+  background-color: #059669;
 }
 
 .btn-primario {
@@ -278,7 +278,7 @@
   background: linear-gradient(
     135deg,
     rgba(2, 102, 179, 0.2),
-    rgba(234, 179, 8, 0.2)
+    #10B98133
   );
   border-radius: 1rem;
   display: flex;
