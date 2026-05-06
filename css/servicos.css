@@ -240,20 +240,41 @@
   transition: background-color 0.3s;
 }
 
-.btn-solicitar {
-  background-color: #10B981;
-  color: #ffffff;
+@media (max-width: 1024px) {
+  .grade-flex,
+  .grade-diferenciais {
+    gap: 1.5rem;
+  }
 }
 
-.btn-solicitar:hover {
-  background-color: #0f805f;
-}
+@media (max-width: 768px) {
+  .destaque-conteudo h1 {
+    font-size: 2rem;
+  }
 
-.btn-empresas {
-  background-color: #0266b3;
-  color: #ffffff;
-}
+  .coluna-2,
+  .coluna-4 {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
 
+  .cartao-ocupacional,
+  .cartao-complementar {
+    padding: 1.25rem;
+  }
+
+  .grade-diferenciais {
+    flex-direction: column;
+  }
+
+  .diferenciais-acao {
+    text-align: left;
+  }
+
+  .layout-2-colunas {
+    flex-direction: column;
+  }
+}
 .btn-empresas:hover {
   background-color: #014f8c;
 }

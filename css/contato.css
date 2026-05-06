@@ -228,4 +228,27 @@
   .linha-form {
     flex-direction: column;
   }
+
+  .layout-contato {
+    flex-direction: column;
+  }
+
+  .col-form,
+  .col-info {
+    flex: 1 1 100%;
+  }
+
+  .caixa-form {
+    padding: 1.5rem;
+  }
+
+  .mapa-container {
+    height: 260px;
+  }
+
+  .btn-enviar,
+  .btn-whatsapp {
+    width: 100%;
+  }
 }
+
