@@ -1,0 +1,222 @@
+{
+  "empresas": {
+    "titulo": "Soluções Completas em SST para sua Empresa",
+    "subtitulo": "Programas e laudos técnicos obrigatórios para garantir a conformidade legal e a segurança de seus colaboradores.",
+    "programas": [
+      {
+        "id": 1,
+        "titulo": "PCMSO",
+        "nomeCompleto": "Programa de Controle Médico de Saúde Ocupacional",
+        "descricao": "Elaboração e implementação completa do PCMSO conforme NR-7, incluindo planejamento de exames ocupacionais e acompanhamento médico.",
+        "beneficios": [
+          "Conformidade com NR-7",
+          "Planejamento de exames ocupacionais",
+          "Relatórios anuais completos",
+          "Indicadores de saúde ocupacional"
+        ],
+        "icone": "article"
+      },
+      {
+        "id": 2,
+        "titulo": "PGR",
+        "nomeCompleto": "Programa de Gerenciamento de Riscos",
+        "descricao": "Elaboração do PGR conforme NR-1, com identificação de perigos, avaliação e controle de riscos ocupacionais.",
+        "beneficios": [
+          "Conformidade com NR-1",
+          "Identificação de perigos",
+          "Avaliação quantitativa de riscos",
+          "Plano de ação personalizado"
+        ],
+        "icone": "shield"
+      },
+      {
+        "id": 3,
+        "titulo": "LTCAT",
+        "nomeCompleto": "Laudo Técnico das Condições Ambientais do Trabalho",
+        "descricao": "Documento técnico exigido pela Previdência Social para comprovar exposição a agentes nocivos.",
+        "beneficios": [
+          "PPP e aposentadoria especial",
+          "Avaliações técnicas in loco",
+          "Caracterização de insalubridade",
+          "Defesa em processos trabalhistas"
+        ],
+        "icone": "assignment"
+      }
+    ],
+    "diferenciais": [
+      {
+        "id": 1,
+        "titulo": "Integração eSocial",
+        "descricao": "Toda documentação já preparada para envio ao eSocial, facilitando a conformidade legal.",
+        "icone": "storage"
+      },
+      {
+        "id": 2,
+        "titulo": "Gestão Estratégica",
+        "descricao": "Relatórios gerenciais e indicadores para tomada de decisão do RH.",
+        "icone": "trending_up"
+      },
+      {
+        "id": 3,
+        "titulo": "Consultoria Especializada",
+        "descricao": "Suporte técnico contínuo para dúvidas e orientações em SST.",
+        "icone": "check_circle"
+      }
+    ],
+    "passos": [
+      "Contato Inicial",
+      "Diagnóstico",
+      "Proposta",
+      "Implementação"
+    ]
+  },
+  "servicos": {
+    "titulo": "Nossos Serviços",
+    "descricao": "Oferecemos uma gama completa de exames médicos ocupacionais e serviços de saúde do trabalho, sempre em conformidade com as normas regulamentadoras.",
+    "ocupacionais": [
+      {
+        "id": 1,
+        "titulo": "Exame Admissional",
+        "descricao": "Avaliação médica completa para novos colaboradores, verificando aptidão para as funções a serem desempenhadas.",
+        "itens": [
+          "Anamnese ocupacional",
+          "Exame clínico completo",
+          "Exames complementares conforme função",
+          "Emissão de ASO"
+        ],
+        "icone": "person_add"
+      },
+      {
+        "id": 2,
+        "titulo": "Exame Periódico",
+        "descricao": "Monitoramento regular da saúde do trabalhador durante o vínculo empregatício.",
+        "itens": [
+          "Periodicidade conforme NR-7",
+          "Acompanhamento de indicadores de saúde",
+          "Detecção precoce de agravos",
+          "Relatórios para gestão"
+        ],
+        "icone": "sync"
+      },
+      {
+        "id": 3,
+        "titulo": "Exame Demissional",
+        "descricao": "Avaliação final do estado de saúde do colaborador no término do vínculo empregatício.",
+        "itens": [
+          "Avaliação das condições de saúde",
+          "Comparação com exames anteriores",
+          "Documentação legal completa",
+          "Agilidade no processo"
+        ],
+        "icone": "person_remove"
+      },
+      {
+        "id": 4,
+        "titulo": "Mudança de Função",
+        "descricao": "Exame específico para colaboradores que mudam de atividade ou setor.",
+        "itens": [
+          "Avaliação de aptidão para nova função",
+          "Análise de riscos específicos",
+          "Exames complementares direcionados",
+          "Orientações personalizadas"
+        ],
+        "icone": "swap_horiz"
+      },
+      {
+        "id": 5,
+        "titulo": "Retorno ao Trabalho",
+        "descricao": "Exame realizado após afastamento por doença ou acidente, superior a 30 dias.",
+        "itens": [
+          "Avaliação de recuperação",
+          "Verificação de aptidão ao retorno",
+          "Recomendações médicas",
+          "Acompanhamento pós-retorno"
+        ],
+        "icone": "healing"
+      }
+    ],
+    "complementares": [
+      {
+        "id": 1,
+        "titulo": "Audiometria",
+        "descricao": "Avaliação da capacidade auditiva dos trabalhadores expostos a ruído.",
+        "icone": "hearing"
+      },
+      {
+        "id": 2,
+        "titulo": "Acuidade Visual",
+        "descricao": "Testes de visão para funções que exigem boa capacidade visual.",
+        "icone": "visibility"
+      },
+      {
+        "id": 3,
+        "titulo": "Exames Laboratoriais",
+        "descricao": "Análises clínicas conforme riscos ocupacionais identificados.",
+        "icone": "biotech"
+      },
+      {
+        "id": 4,
+        "titulo": "Espirometria",
+        "descricao": "Avaliação da função pulmonar para trabalhadores expostos a agentes respiratórios.",
+        "icone": "medical_services"
+      }
+    ],
+    "diferenciais": [
+      "Agendamento facilitado e atendimento ágil",
+      "Equipamentos modernos e calibrados",
+      "Equipe médica especializada e qualificada",
+      "Emissão digital de ASO",
+      "Integração com eSocial",
+      "Relatórios gerenciais para RH"
+    ]
+  },
+  "sobre": {
+    "titulo": "Sobre a CESOVAT",
+    "descricao": "Referência em saúde ocupacional e segurança do trabalho, comprometida com a excelência no cuidado com seus colaboradores.",
+    "historia": [
+      "Fundada em 2011, a CESOVAT nasceu com o propósito de revolucionar o atendimento em medicina ocupacional, oferecendo serviços de alta qualidade aliados à tecnologia e humanização.",
+      "Ao longo de mais de 15 anos de atuação, consolidamos nossa presença no mercado como parceira estratégica de empresas de diversos segmentos, sempre priorizando a saúde e segurança dos colaboradores.",
+      "Hoje, somos reconhecidos pela excelência técnica, agilidade no atendimento e compromisso com a conformidade legal, tendo realizado mais de 50 mil exames ocupacionais."
+    ],
+    "missao": "Proporcionar soluções completas e eficientes em saúde ocupacional e segurança do trabalho, garantindo a conformidade legal das empresas e promovendo a qualidade de vida dos trabalhadores através de atendimento humanizado e tecnologia de ponta.",
+    "visao": "Ser reconhecida como a clínica de referência em medicina ocupacional e segurança do trabalho, destacando-se pela excelência técnica, inovação constante e compromisso com o bem-estar dos colaboradores de nossos clientes.",
+    "valores": [
+      {
+        "titulo": "Excelência",
+        "descricao": "Compromisso com a qualidade e precisão em todos os nossos serviços",
+        "icone": "workspace_premium"
+      },
+      {
+        "titulo": "Humanização",
+        "descricao": "Atendimento acolhedor e personalizado para cada colaborador",
+        "icone": "groups"
+      },
+      {
+        "titulo": "Conformidade",
+        "descricao": "Cumprimento rigoroso de todas as normas e regulamentações",
+        "icone": "track_changes"
+      }
+    ],
+    "equipe": [
+      "Médicos especializados em Medicina do Trabalho",
+      "Enfermeiros e técnicos capacitados",
+      "Engenheiros e Técnicos de Segurança do Trabalho",
+      "Atualização constante em normas e legislação"
+    ]
+  },
+  "contato": {
+    "titulo": "Entre em Contato",
+    "descricao": "Estamos prontos para atender sua empresa. Entre em contato conosco para agendar exames ou solicitar uma proposta personalizada.",
+    "endereco": {
+      "rua": "Av. Djalma Dutra, 695",
+      "bairro": "Heliópolis",
+      "cidade": "Garanhuns",
+      "estado": "PE",
+      "cep": "55296-294"
+    },
+    "telefones": ["(87) 98127-7972"],
+    "emails": ["contato@cesovat.com.br", "comercial@cesovat.com.br"],
+    "horario": "Segunda a Sexta\n08:00 às 18:00",
+    "whatsapp": "(87) 98127-7972"
+  }
+}
