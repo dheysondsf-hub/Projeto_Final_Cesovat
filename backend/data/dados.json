@@ -1,4 +1,229 @@
 {
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Admin CESOVAT",
+      "email": "admin@cesovat.com.br",
+      "senha": "admin123",
+      "cargo": "Administrador",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "nome": "Maria Silva",
+      "email": "maria@cesovat.com.br",
+      "senha": "maria123",
+      "cargo": "Técnica em Enfermagem",
+      "role": "colaborador"
+    },
+    {
+      "id": 3,
+      "nome": "Mario Filho",
+      "email": "mario@cesovat.com",
+      "senha": "mario123",
+      "cargo": "Gerente de TI",
+      "role": "colaborador"
+    },
+    {
+      "id": 4,
+      "nome": "Teste API",
+      "email": "testeapi@example.com",
+      "senha": "123456",
+      "cargo": "Cliente",
+      "role": "cliente"
+    },
+    {
+      "id": 5,
+      "nome": "João Filho",
+      "email": "joao.filho@ferreira-costa.com",
+      "senha": "joao123",
+      "cargo": "Gerente de TI",
+      "role": "cliente"
+    }
+  ],
+  "servicos": [
+    {
+      "id": 1,
+      "titulo": "Exame Admissional",
+      "descricao": "Avaliação médica completa para novos colaboradores, verificando aptidão para as funções a serem desempenhadas.",
+      "icone": "person_add",
+      "categoria": "ocupacional",
+      "preco": 120,
+      "duracao": "45 min",
+      "itens": [
+        "Anamnese ocupacional",
+        "Exame clínico completo",
+        "Exames complementares conforme função",
+        "Emissão de ASO"
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Exame Periódico",
+      "descricao": "Monitoramento regular da saúde do trabalhador durante o vínculo empregatício.",
+      "icone": "sync",
+      "categoria": "ocupacional",
+      "preco": 100,
+      "duracao": "30 min",
+      "itens": [
+        "Periodicidade conforme NR-7",
+        "Acompanhamento de indicadores de saúde",
+        "Detecção precoce de agravos",
+        "Relatórios para gestão"
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Exame Demissional",
+      "descricao": "Avaliação final do estado de saúde do colaborador no término do vínculo empregatício.",
+      "icone": "person_remove",
+      "categoria": "ocupacional",
+      "preco": 110,
+      "duracao": "30 min",
+      "itens": [
+        "Avaliação das condições de saúde",
+        "Comparação com exames anteriores",
+        "Documentação legal completa",
+        "Agilidade no processo"
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Mudança de Função",
+      "descricao": "Exame específico para colaboradores que mudam de atividade ou setor dentro da empresa.",
+      "icone": "swap_horiz",
+      "categoria": "ocupacional",
+      "preco": 110,
+      "duracao": "40 min",
+      "itens": [
+        "Avaliação de aptidão para nova função",
+        "Análise de riscos específicos",
+        "Exames complementares direcionados",
+        "Orientações personalizadas"
+      ]
+    },
+    {
+      "id": 5,
+      "titulo": "Retorno ao Trabalho",
+      "descricao": "Exame realizado após afastamento por doença ou acidente, superior a 30 dias.",
+      "icone": "healing",
+      "categoria": "ocupacional",
+      "preco": 110,
+      "duracao": "40 min",
+      "itens": [
+        "Avaliação de recuperação",
+        "Verificação de aptidão ao retorno",
+        "Recomendações médicas",
+        "Acompanhamento pós-retorno"
+      ]
+    },
+    {
+      "id": 6,
+      "titulo": "Audiometria",
+      "descricao": "Avaliação da capacidade auditiva dos trabalhadores expostos a ruído ocupacional.",
+      "icone": "hearing",
+      "categoria": "complementar",
+      "preco": 60,
+      "duracao": "20 min",
+      "itens": []
+    },
+    {
+      "id": 7,
+      "titulo": "Acuidade Visual",
+      "descricao": "Testes de visão para funções que exigem boa capacidade visual no ambiente de trabalho.",
+      "icone": "visibility",
+      "categoria": "complementar",
+      "preco": 50,
+      "duracao": "15 min",
+      "itens": []
+    },
+    {
+      "id": 8,
+      "titulo": "Exames Laboratoriais",
+      "descricao": "Análises clínicas conforme riscos ocupacionais identificados no PGR/PCMSO.",
+      "icone": "biotech",
+      "categoria": "complementar",
+      "preco": 80,
+      "duracao": "10 min",
+      "itens": []
+    },
+    {
+      "id": 9,
+      "titulo": "Espirometria",
+      "descricao": "Avaliação da função pulmonar para trabalhadores expostos a agentes respiratórios.",
+      "icone": "medical_services",
+      "categoria": "complementar",
+      "preco": 70,
+      "duracao": "20 min",
+      "itens": []
+    }
+  ],
+  "agendamentos": [
+    {
+      "id": 1,
+      "paciente": "João Pedro Oliveira",
+      "empresa": "Tech Solutions LTDA",
+      "servicoId": 1,
+      "data": "2026-07-15",
+      "horario": "09:00",
+      "status": "confirmado",
+      "observacoes": "Primeiro emprego na empresa"
+    },
+    {
+      "id": 2,
+      "paciente": "Ana Beatriz Santos",
+      "empresa": "Construtora Norte LTDA",
+      "servicoId": 2,
+      "data": "2026-07-16",
+      "horario": "10:30",
+      "status": "pendente",
+      "observacoes": "Exame periódico anual"
+    },
+    {
+      "id": 5,
+      "paciente": "João Pedro",
+      "empresa": "Ferreira Costa",
+      "servicoId": 1,
+      "data": "2026-07-08",
+      "horario": "08:00",
+      "status": "realizado",
+      "observacoes": "",
+      "clienteId": 5
+    },
+    {
+      "id": 7,
+      "paciente": "Maria Ferreira",
+      "empresa": "Ferreira Costa",
+      "servicoId": 5,
+      "data": "2026-07-02",
+      "horario": "08:20",
+      "status": "confirmado",
+      "observacoes": "Retorno pos licenca maternidade",
+      "clienteId": 5
+    },
+    {
+      "id": 8,
+      "paciente": "Maria Ferreira",
+      "empresa": "Ferreira Costa",
+      "servicoId": 5,
+      "data": "2026-07-09",
+      "horario": "08:45",
+      "status": "cancelado",
+      "observacoes": "Por favor realizar o atendimento com atencao ",
+      "clienteId": 5
+    },
+    {
+      "id": 9,
+      "paciente": "Teste API",
+      "empresa": "Ferreira Costa",
+      "servicoId": 1,
+      "data": "2026-07-13",
+      "horario": "10:20",
+      "status": "confirmado",
+      "observacoes": "teste agendamento",
+      "clienteId": 5
+    }
+  ],
   "empresas": {
     "titulo": "Soluções Completas em SST para sua Empresa",
     "subtitulo": "Programas e laudos técnicos obrigatórios para garantir a conformidade legal e a segurança de seus colaboradores.",
@@ -62,112 +287,6 @@
         "descricao": "Suporte técnico contínuo para dúvidas e orientações em SST.",
         "icone": "check_circle"
       }
-    ],
-    "passos": [
-      "Contato Inicial",
-      "Diagnóstico",
-      "Proposta",
-      "Implementação"
-    ]
-  },
-  "servicos": {
-    "titulo": "Nossos Serviços",
-    "descricao": "Oferecemos uma gama completa de exames médicos ocupacionais e serviços de saúde do trabalho, sempre em conformidade com as normas regulamentadoras.",
-    "ocupacionais": [
-      {
-        "id": 1,
-        "titulo": "Exame Admissional",
-        "descricao": "Avaliação médica completa para novos colaboradores, verificando aptidão para as funções a serem desempenhadas.",
-        "itens": [
-          "Anamnese ocupacional",
-          "Exame clínico completo",
-          "Exames complementares conforme função",
-          "Emissão de ASO"
-        ],
-        "icone": "person_add"
-      },
-      {
-        "id": 2,
-        "titulo": "Exame Periódico",
-        "descricao": "Monitoramento regular da saúde do trabalhador durante o vínculo empregatício.",
-        "itens": [
-          "Periodicidade conforme NR-7",
-          "Acompanhamento de indicadores de saúde",
-          "Detecção precoce de agravos",
-          "Relatórios para gestão"
-        ],
-        "icone": "sync"
-      },
-      {
-        "id": 3,
-        "titulo": "Exame Demissional",
-        "descricao": "Avaliação final do estado de saúde do colaborador no término do vínculo empregatício.",
-        "itens": [
-          "Avaliação das condições de saúde",
-          "Comparação com exames anteriores",
-          "Documentação legal completa",
-          "Agilidade no processo"
-        ],
-        "icone": "person_remove"
-      },
-      {
-        "id": 4,
-        "titulo": "Mudança de Função",
-        "descricao": "Exame específico para colaboradores que mudam de atividade ou setor.",
-        "itens": [
-          "Avaliação de aptidão para nova função",
-          "Análise de riscos específicos",
-          "Exames complementares direcionados",
-          "Orientações personalizadas"
-        ],
-        "icone": "swap_horiz"
-      },
-      {
-        "id": 5,
-        "titulo": "Retorno ao Trabalho",
-        "descricao": "Exame realizado após afastamento por doença ou acidente, superior a 30 dias.",
-        "itens": [
-          "Avaliação de recuperação",
-          "Verificação de aptidão ao retorno",
-          "Recomendações médicas",
-          "Acompanhamento pós-retorno"
-        ],
-        "icone": "healing"
-      }
-    ],
-    "complementares": [
-      {
-        "id": 1,
-        "titulo": "Audiometria",
-        "descricao": "Avaliação da capacidade auditiva dos trabalhadores expostos a ruído.",
-        "icone": "hearing"
-      },
-      {
-        "id": 2,
-        "titulo": "Acuidade Visual",
-        "descricao": "Testes de visão para funções que exigem boa capacidade visual.",
-        "icone": "visibility"
-      },
-      {
-        "id": 3,
-        "titulo": "Exames Laboratoriais",
-        "descricao": "Análises clínicas conforme riscos ocupacionais identificados.",
-        "icone": "biotech"
-      },
-      {
-        "id": 4,
-        "titulo": "Espirometria",
-        "descricao": "Avaliação da função pulmonar para trabalhadores expostos a agentes respiratórios.",
-        "icone": "medical_services"
-      }
-    ],
-    "diferenciais": [
-      "Agendamento facilitado e atendimento ágil",
-      "Equipamentos modernos e calibrados",
-      "Equipe médica especializada e qualificada",
-      "Emissão digital de ASO",
-      "Integração com eSocial",
-      "Relatórios gerenciais para RH"
     ]
   },
   "sobre": {
@@ -214,9 +333,33 @@
       "estado": "PE",
       "cep": "55296-294"
     },
-    "telefones": ["(87) 98127-7972"],
-    "emails": ["contato@cesovat.com.br", "comercial@cesovat.com.br"],
+    "telefones": [
+      "(87) 98127-7972"
+    ],
+    "emails": [
+      "contato@cesovat.com.br",
+      "comercial@cesovat.com.br"
+    ],
     "horario": "Segunda a Sexta\n08:00 às 18:00",
     "whatsapp": "(87) 98127-7972"
-  }
+  },
+  "estatisticas": {
+    "anosExperiencia": 15,
+    "empresasAtendidas": 500,
+    "examesRealizados": 50000
+  },
+  "contatoMensagens": [
+    {
+      "id": 2,
+      "nome": "Paulo ",
+      "email": "paulo@gmail.com",
+      "telefone": "8199819981",
+      "empresa": "Ferreira Costa",
+      "assunto": "Gostaria de contratar os servicos",
+      "mensagem": "Prezada equipe,Gostaria de solicitar um orçamento para a realização de exames médicos ocupacionais para a nossa empresa.",
+      "criadoEm": "2026-07-04T02:57:41.713Z",
+      "status": "contatado",
+      "contatadoEm": "2026-07-04T03:28:41.816Z"
+    }
+  ]
 }
