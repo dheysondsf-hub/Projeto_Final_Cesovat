@@ -6,17 +6,11 @@ const { validarHorarioAgendamento, deveBloquearAlteracaoStatusCliente, normaliza
 
 const app = express();
 const PORT = 3000;
-
-// Caminho para o arquivo de dados (simula um banco de dados)
 const DATA_PATH = path.join(__dirname, 'data', 'dados.json');
-
-// Função auxiliar para ler os dados do arquivo JSON
 function lerDados() {
   const raw = fs.readFileSync(DATA_PATH, 'utf-8');
   return JSON.parse(raw);
 }
-
-// Função auxiliar para salvar os dados no arquivo JSON
 function salvarDados(dados) {
   fs.writeFileSync(DATA_PATH, JSON.stringify(dados, null, 2), 'utf-8');
 }
@@ -32,18 +26,9 @@ function obterContextoAuth(req) {
 function ehEquipe(role) {
   return role === 'admin' || role === 'colaborador';
 }
-// Middlewares
 app.use(cors());
 app.use(express.json());
-
-// Servir arquivos estáticos do frontend
 app.use(express.static(path.join(__dirname, '../frontend')));
-
-// ============================================================
-// ROTAS DE AUTENTICAÇÃO (AUTH)
-// ============================================================
-
-// POST /api/auth/login — Autenticação de usuário
 app.post('/api/auth/login', (req, res) => {
   const { email, senha, role } = req.body;
 
@@ -61,16 +46,12 @@ app.post('/api/auth/login', (req, res) => {
   if (!usuario) {
     return res.status(401).json({ erro: 'E-mail ou senha incorretos.' });
   }
-
-  // Retorna os dados do usuário (sem a senha)
   const { senha: _, ...usuarioSemSenha } = usuario;
   res.json({
     mensagem: 'Login realizado com sucesso!',
     usuario: usuarioSemSenha,
   });
 });
-
-// POST /api/auth/registro — Cadastro de novo usuário
 app.post('/api/auth/registro', (req, res) => {
   const { nome, email, senha, cargo, role: roleSolicitada, criadorRole } = req.body;
   const role = (criadorRole || '').toString().toLowerCase();
@@ -114,16 +95,8 @@ app.post('/api/auth/registro', (req, res) => {
     usuario: usuarioSemSenha,
   });
 });
-
-// ============================================================
-// ROTAS DE SERVIÇOS (CRUD completo)
-// ============================================================
-
-// GET /api/servicos — Listar todos os serviços
 app.get('/api/servicos', (req, res) => {
   const dados = lerDados();
-
-  // Filtro opcional por categoria
   const { categoria } = req.query;
   let servicos = dados.servicos;
 
@@ -133,8 +106,6 @@ app.get('/api/servicos', (req, res) => {
 
   res.json(servicos);
 });
-
-// GET /api/servicos/:id — Obter um serviço específico
 app.get('/api/servicos/:id', (req, res) => {
   const dados = lerDados();
   const servico = dados.servicos.find((s) => s.id === parseInt(req.params.id));
@@ -145,8 +116,6 @@ app.get('/api/servicos/:id', (req, res) => {
 
   res.json(servico);
 });
-
-// POST /api/servicos — Criar novo serviço
 app.post('/api/servicos', (req, res) => {
   const { role } = obterContextoAuth(req);
 
@@ -188,8 +157,6 @@ app.post('/api/servicos', (req, res) => {
     servico: novoServico,
   });
 });
-
-// PUT /api/servicos/:id — Atualizar um serviço existente
 app.put('/api/servicos/:id', (req, res) => {
   const { role } = obterContextoAuth(req);
 
@@ -227,8 +194,6 @@ app.put('/api/servicos/:id', (req, res) => {
     servico: dados.servicos[index],
   });
 });
-
-// DELETE /api/servicos/:id — Remover um serviço
 app.delete('/api/servicos/:id', (req, res) => {
   const { role } = obterContextoAuth(req);
 
@@ -253,12 +218,6 @@ app.delete('/api/servicos/:id', (req, res) => {
     servico: removido,
   });
 });
-
-// ============================================================
-// ROTAS DE AGENDAMENTOS (CRUD completo)
-// ============================================================
-
-// GET /api/agendamentos — Listar todos os agendamentos
 app.get('/api/agendamentos', (req, res) => {
   const dados = lerDados();
   const { role, userId } = obterContextoAuth(req);
@@ -268,8 +227,6 @@ app.get('/api/agendamentos', (req, res) => {
     if (role === 'cliente') return ag.clienteId === userId;
     return false;
   });
-
-  // Enriquece cada agendamento com o nome do serviço
   const agendamentosEnriquecidos = agendamentosVisiveis.map((ag) => {
     const servico = dados.servicos.find((s) => s.id === ag.servicoId);
     return {
@@ -280,8 +237,6 @@ app.get('/api/agendamentos', (req, res) => {
 
   res.json(agendamentosEnriquecidos);
 });
-
-// POST /api/agendamentos — Criar novo agendamento
 app.post('/api/agendamentos', (req, res) => {
   const { role, userId } = obterContextoAuth(req);
   const { paciente, empresa, servicoId, data, horario, observacoes, clienteId } = req.body;
@@ -327,8 +282,6 @@ app.post('/api/agendamentos', (req, res) => {
     agendamento: novoAgendamento,
   });
 });
-
-// PUT /api/agendamentos/:id — Atualizar status de um agendamento
 app.put('/api/agendamentos/:id', (req, res) => {
   const dados = lerDados();
   const { role, userId } = obterContextoAuth(req);
@@ -381,8 +334,6 @@ app.put('/api/agendamentos/:id', (req, res) => {
     agendamento: dados.agendamentos[index],
   });
 });
-
-// DELETE /api/agendamentos/:id — Remover um agendamento
 app.delete('/api/agendamentos/:id', (req, res) => {
   const { role } = obterContextoAuth(req);
   const dados = lerDados();
@@ -406,36 +357,22 @@ app.delete('/api/agendamentos/:id', (req, res) => {
     agendamento: removido,
   });
 });
-
-// ============================================================
-// ROTAS DE DADOS INSTITUCIONAIS (somente leitura)
-// ============================================================
-
-// GET /api/empresas — Dados da página de empresas
 app.get('/api/empresas', (req, res) => {
   const dados = lerDados();
   res.json(dados.empresas);
 });
-
-// GET /api/sobre — Dados da página sobre
 app.get('/api/sobre', (req, res) => {
   const dados = lerDados();
   res.json(dados.sobre);
 });
-
-// GET /api/contato — Dados de contato
 app.get('/api/contato', (req, res) => {
   const dados = lerDados();
   res.json(dados.contato);
 });
-
-// GET /api/estatisticas — Números/Estatísticas da clínica
 app.get('/api/estatisticas', (req, res) => {
   const dados = lerDados();
   res.json(dados.estatisticas);
 });
-
-// POST /api/contato/mensagem — Enviar mensagem de contato
 app.post('/api/contato/mensagem', (req, res) => {
   const { nome, email, telefone, empresa, assunto, mensagem } = req.body;
 
@@ -444,8 +381,6 @@ app.post('/api/contato/mensagem', (req, res) => {
       .status(400)
       .json({ erro: 'Preencha todos os campos obrigatórios.' });
   }
-
-  // Salvar a mensagem no arquivo de dados para que colaboradores possam visualizar
   const dados = lerDados();
   if (!Array.isArray(dados.contatoMensagens)) dados.contatoMensagens = [];
 
@@ -469,8 +404,6 @@ app.post('/api/contato/mensagem', (req, res) => {
     mensagemId: novoId
   });
 });
-
-// GET /api/contato/mensagens — Listar mensagens de contato (colaboradores vêem todas)
 app.get('/api/contato/mensagens', (req, res) => {
   const dados = lerDados();
   const { role, userId } = obterContextoAuth(req);
@@ -489,18 +422,12 @@ app.get('/api/contato/mensagens', (req, res) => {
   if (ehEquipe(role)) {
     return res.json(sortedMsgs);
   }
-
-  // Clientes só veem mensagens enviadas por seu e-mail (se autenticado)
   const usuario = dados.usuarios.find(u => u.id === userId);
   if (usuario) {
     return res.json(sortedMsgs.filter(m => (m.email || '').toLowerCase() === (usuario.email || '').toLowerCase()));
   }
-
-  // Usuários não autenticados não recebem mensagens
   res.status(403).json({ erro: 'Acesso negado.' });
 });
-
-// PUT /api/contato/mensagens/:id — Atualizar status da mensagem (apenas equipe)
 app.put('/api/contato/mensagens/:id', (req, res) => {
   const { role } = obterContextoAuth(req);
   if (!ehEquipe(role)) return res.status(403).json({ erro: 'Somente colaboradores podem atualizar mensagens.' });
@@ -521,8 +448,6 @@ app.put('/api/contato/mensagens/:id', (req, res) => {
 
   res.json({ mensagem: 'Status atualizado.', mensagem: dados.contatoMensagens[idx] });
 });
-
-// DELETE /api/contato/mensagens/:id — Remover mensagem (apenas equipe)
 app.delete('/api/contato/mensagens/:id', (req, res) => {
   const { role } = obterContextoAuth(req);
   if (!ehEquipe(role)) return res.status(403).json({ erro: 'Somente colaboradores podem remover mensagens.' });
@@ -537,22 +462,12 @@ app.delete('/api/contato/mensagens/:id', (req, res) => {
   salvarDados(dados);
   res.json({ mensagem: 'Mensagem removida.', mensagem: removido });
 });
-
-// ============================================================
-// ROTA PRINCIPAL — Servir o frontend
-// ============================================================
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
-
-// Fallback — redireciona para o index.html (SPA)
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
-
-// ============================================================
-// INICIAR O SERVIDOR
-// ============================================================
 app.listen(PORT, () => {
   console.log(`\n🏥 CESOVAT - Servidor rodando em http://localhost:${PORT}`);
   console.log(`📋 API disponível em http://localhost:${PORT}/api`);

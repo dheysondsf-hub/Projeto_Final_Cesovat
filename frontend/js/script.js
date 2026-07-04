@@ -1,9 +1,5 @@
-// ============================================================
-// CESOVAT - SPA Router & Page Renderer
-// ============================================================
 const API = `${window.location.protocol}//${window.location.hostname}${window.location.port ? `:${window.location.port}` : ''}/api`;
 
-// --- Utility ---
 function getAuthHeaders(extra = {}) {
   const headers = { ...(extra || {}) };
   if (loggedUser) {
@@ -71,10 +67,8 @@ function openConfirmModal({ title, message, confirmText = 'Excluir', onConfirm }
   });
 }
 
-// --- SPA Router ---
 let currentPage = 'home';
 let loggedUser = JSON.parse(localStorage.getItem('cesovat_user') || 'null');
-// Filtro aplicado ao painel de agendamentos (null = todos)
 let painelAgendFilter = null;
 
 function navigateTo(page) {
@@ -84,13 +78,11 @@ function navigateTo(page) {
   renderPage(page);
 }
 
-// --- Event Delegation ---
 document.addEventListener('click', (e) => {
   const link = e.target.closest('[data-page]');
   if (link) { e.preventDefault(); navigateTo(link.dataset.page); }
 });
 
-// Hamburger menu
 const hamburger = document.getElementById('btn-hamburger');
 const navMenu = document.getElementById('nav-menu');
 if (hamburger) {
@@ -100,12 +92,10 @@ if (hamburger) {
   });
 }
 
-// Navbar scroll effect
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// Update login button state
 function updateAuthUI() {
   const btn = document.getElementById('btn-login-nav');
   if (!btn) return;
@@ -118,11 +108,9 @@ function updateAuthUI() {
   }
 }
 
-// --- Page Renderer ---
 async function renderPage(page) {
   const app = document.getElementById('app-content');
   
-  // Fade out
   app.style.opacity = '0';
   app.style.transform = 'translateY(15px)';
   app.classList.remove('animate-fade-in');
@@ -140,16 +128,12 @@ async function renderPage(page) {
     default: renderHome(app);
   }
 
-  // Fade and slide in using the premium CSS animation class
   app.style.opacity = '';
   app.style.transform = '';
   app.classList.add('animate-fade-in');
   updateAuthUI();
 }
 
-// ============================================================
-// HOME PAGE
-// ============================================================
 async function renderHome(app) {
   const [servicos, stats] = await Promise.all([apiFetch('servicos'), apiFetch('estatisticas')]);
   const top4 = [...(servicos || [])].reverse().slice(0, 4);
@@ -205,9 +189,6 @@ async function renderHome(app) {
   `;
 }
 
-// ============================================================
-// SOBRE PAGE
-// ============================================================
 async function renderSobre(app) {
   const data = await apiFetch('sobre');
   if (!data) { app.innerHTML = '<p style="padding:4rem;text-align:center">Erro ao carregar dados.</p>'; return; }
@@ -256,9 +237,6 @@ async function renderSobre(app) {
   `;
 }
 
-// ============================================================
-// SERVIÇOS PAGE
-// ============================================================
 async function renderServicos(app) {
   const servicos = await apiFetch('servicos');
   if (!servicos) { app.innerHTML = '<p style="padding:4rem;text-align:center">Erro ao carregar.</p>'; return; }
@@ -301,9 +279,6 @@ async function renderServicos(app) {
   `;
 }
 
-// ============================================================
-// EMPRESAS PAGE
-// ============================================================
 async function renderEmpresas(app) {
   const data = await apiFetch('empresas');
   if (!data) { app.innerHTML = '<p style="padding:4rem;text-align:center">Erro ao carregar.</p>'; return; }
@@ -358,9 +333,6 @@ async function renderEmpresas(app) {
   `;
 }
 
-// ============================================================
-// CONTATO PAGE
-// ============================================================
 async function renderContato(app) {
   const data = await apiFetch('contato');
   if (!data) { app.innerHTML = '<p style="padding:4rem;text-align:center">Erro ao carregar.</p>'; return; }
@@ -408,9 +380,6 @@ async function renderContato(app) {
   });
 }
 
-// ============================================================
-// LOGIN PAGE
-// ============================================================
 function renderLogin(app) {
   if (loggedUser) { navigateTo('painel'); return; }
 
@@ -465,30 +434,24 @@ function renderLogin(app) {
   });
 }
 
-// ============================================================
-// PAINEL (Dashboard)
-// ============================================================
 async function renderPainel(app) {
   if (!loggedUser) { navigateTo('login'); return; }
 
   const isStaff = loggedUser.role === 'admin' || loggedUser.role === 'colaborador';
   const isClient = loggedUser.role === 'cliente';
   
-  // Buscar agendamentos, serviços e mensagens de contato concorrentemente
   const [agendamentos, servicos, contatoMensagens] = await Promise.all([
     apiFetch('agendamentos').then(d => d || []),
     apiFetch('servicos').then(d => d || []),
     apiFetch('contato/mensagens').then(d => d || [])
   ]);
 
-  // Ordenar agendamentos por data+horário (mais recentes primeiro)
   const agendamentosSorted = (agendamentos || []).slice().sort((a, b) => {
     const ta = new Date(`${a.data}T${a.horario}`);
     const tb = new Date(`${b.data}T${b.horario}`);
     return tb - ta;
   });
 
-  // Aplicar filtro do painel e filtro por cliente quando aplicável
   let agendamentosFiltered = agendamentosSorted;
   if (isClient) {
     agendamentosFiltered = agendamentosFiltered.filter(a => a.clienteId === loggedUser.id);
@@ -497,7 +460,6 @@ async function renderPainel(app) {
     agendamentosFiltered = agendamentosFiltered.filter(a => a.status === painelAgendFilter);
   }
 
-  // Contador de não-lidos para abas (persistido por usuário)
   const storageKey = `cesovat_seen_${loggedUser.id || 'anon'}`;
   const seenObj = JSON.parse(localStorage.getItem(storageKey) || '{}');
   const lastSeenAgId = seenObj.lastAgendamentoIdSeen || 0;
@@ -512,7 +474,6 @@ async function renderPainel(app) {
     if (type === 'agendamentos') cur.lastAgendamentoIdSeen = maxAgId;
     if (type === 'contatos') cur.lastMensagemIdSeen = maxMsgId;
     localStorage.setItem(storageKey, JSON.stringify(cur));
-    // atualizar badges na UI
     const tb = document.getElementById('tab-btn-agendamentos');
     if (tb) {
       const b = tb.querySelector('.tab-badge'); if (b) b.remove();
@@ -558,8 +519,6 @@ async function renderPainel(app) {
         </button>
       </div>
       ` : ''}
-
-      <!-- CONTEÚDO TAB AGENDAMENTOS -->
       <div class="tab-content active" id="tab-content-agendamentos">
         <div class="painel-actions">
           <h2 class="section-title" style="margin: 0">${isStaff ? 'Lista de Agendamentos' : 'Meus Agendamentos'}</h2>
@@ -575,8 +534,6 @@ async function renderPainel(app) {
           <div class="painel-stat ${painelAgendFilter === 'cancelado' ? 'active' : ''}" data-status="cancelado"><span class="material-icons-outlined">cancel</span><div><span class="stat-num">${agendamentos.filter(a => a.status === 'cancelado').length}</span><span class="stat-label">Cancelados</span></div></div>
           <div class="painel-stat ${painelAgendFilter === 'realizado' ? 'active' : ''}" data-status="realizado"><span class="material-icons-outlined">done_all</span><div><span class="stat-num">${agendamentos.filter(a => a.status === 'realizado').length}</span><span class="stat-label">Realizados</span></div></div>
         </div>
-
-        <!-- Formulário de Cadastro/Edição de Agendamento -->
         <div id="agendamento-form-container" style="display: none; margin-bottom: 30px;">
           <div class="form-card">
             <h3 id="agendamento-form-title"><span class="material-icons-outlined">add_box</span> Agendar Exame</h3>
@@ -687,7 +644,6 @@ async function renderPainel(app) {
       </div>
 
       ${isStaff ? `
-      <!-- CONTEÚDO TAB SERVIÇOS -->
       <div class="tab-content" id="tab-content-servicos">
         <div class="painel-actions">
           <h2 class="section-title" style="margin: 0">Serviços Cadastrados</h2>
@@ -695,8 +651,6 @@ async function renderPainel(app) {
             <span class="material-icons-outlined">add</span> Cadastrar Novo Serviço
           </button>
         </div>
-
-        <!-- Formulário de Cadastro/Edição de Serviço -->
         <div id="service-form-container" style="display: none; margin-bottom: 30px;">
           <div class="form-card">
             <h3 id="form-title"><span class="material-icons-outlined">add_box</span> Novo Serviço</h3>
@@ -802,8 +756,6 @@ async function renderPainel(app) {
           </table>
         </div>
       </div>
-      
-      <!-- CONTEÚDO TAB USUÁRIOS -->
       <div class="tab-content" id="tab-content-usuarios">
         <div class="painel-actions">
           <h2 class="section-title" style="margin: 0">Cadastrar Novo Usuário</h2>
@@ -852,7 +804,6 @@ async function renderPainel(app) {
     </section>
   `;
 
-  // --- Elementos do Painel ---
   const tabBtnAgendamentos = document.getElementById('tab-btn-agendamentos');
   const tabBtnServicos = document.getElementById('tab-btn-servicos');
   const tabBtnUsuarios = document.getElementById('tab-btn-usuarios');
@@ -867,7 +818,6 @@ async function renderPainel(app) {
   const serviceForm = document.getElementById('service-form');
   const usuarioForm = document.getElementById('usuario-form');
 
-  // Aba de Mensagens (inserida dinamicamente para administradores)
   const tabBtnContatos = document.getElementById('tab-btn-contatos');
   let tabContentContatos = document.getElementById('tab-content-contatos');
   if (tabBtnContatos && isStaff) {
@@ -925,7 +875,6 @@ async function renderPainel(app) {
     }
   }
 
-  // --- Novos Elementos para Agendamentos ---
   const btnAddAgendamento = document.getElementById('btn-add-agendamento');
   const btnCancelAgendamento = document.getElementById('btn-cancel-agendamento');
   const agendamentoFormContainer = document.getElementById('agendamento-form-container');
@@ -938,7 +887,6 @@ async function renderPainel(app) {
   const btnSaveAgendamento = document.getElementById('btn-save-agendamento');
   const btnBackAgendamento = document.getElementById('btn-back-agendamento');
 
-  // --- Alternância de Abas ---
   function activateTab(name) {
     const btns = {
       agendamentos: tabBtnAgendamentos,
@@ -970,7 +918,6 @@ async function renderPainel(app) {
     if (agendamentoStatusField) {
       agendamentoStatusField.disabled = true;
       agendamentoStatusField.value = 'pendente';
-      // Esconde o campo de status do formulário para clientes
       const statusGroup = agendamentoStatusField.closest('.form-group');
       if (statusGroup) statusGroup.style.display = 'none';
     }
@@ -981,9 +928,9 @@ async function renderPainel(app) {
     }
   }
 
-  // --- Gerenciamento de Agendamentos (Ações Rápidas Confirmar/Cancelar) ---
-  if (!app.__agendamentoActionsBound) {
-    app.addEventListener('click', async (event) => {
+  const agendamentosTab = document.getElementById('tab-content-agendamentos');
+  if (agendamentosTab) {
+    agendamentosTab.addEventListener('click', async (event) => {
       const btn = event.target.closest('.btn-action');
       if (!btn) return;
 
@@ -1072,31 +1019,32 @@ async function renderPainel(app) {
       if (btn.classList.contains('delete')) {
         event.preventDefault();
         openConfirmModal({
-          title: 'Excluir agendamento',
+          title: 'Excluir Agendamento',
           message: 'Deseja realmente excluir este agendamento? Esta ação não pode ser desfeita.',
           onConfirm: async () => {
             try {
-          const r = await fetch(`${API}/agendamentos/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
-          const d = await r.json();
-          if (r.ok) {
-            showToast(d.mensagem || 'Agendamento excluído.');
-            await renderPainel(app);
-          } else {
-            showToast(d.erro || 'Erro ao excluir agendamento.', 'error');
+              const r = await fetch(`${API}/agendamentos/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
+              const d = await r.json();
+              if (r.ok) {
+                showToast(d.mensagem || 'Agendamento excluído com sucesso.');
+                await renderPainel(app);
+              } else {
+                showToast(d.erro || 'Erro ao excluir agendamento.', 'error');
+              }
+            } catch {
+              showToast('Erro de conexão.', 'error');
+            }
           }
-        } catch {
-          showToast('Erro de conexão.', 'error');
-        }
+        });
+        return;
       }
     });
-    app.__agendamentoActionsBound = true;
   }
 
   if (!isStaff) {
     if (btnAddAgendamento) btnAddAgendamento.style.display = 'inline-flex';
   }
 
-  // --- Exibição/Ocultação do Formulário de Agendamentos ---
   btnAddAgendamento.addEventListener('click', () => {
     document.getElementById('agendamento-form-title').innerHTML = '<span class="material-icons-outlined">add_box</span> Novo Agendamento';
     agendamentoForm.reset();
@@ -1107,12 +1055,10 @@ async function renderPainel(app) {
         agendamentoStatusField.disabled = true;
       }
     }
-    // Mostrar botões padrão (Salvar / Cancelar) e esconder Voltar
     if (btnSaveAgendamento) btnSaveAgendamento.style.display = '';
     if (btnCancelAgendamento) btnCancelAgendamento.style.display = 'inline-flex';
     if (btnBackAgendamento) btnBackAgendamento.style.display = 'none';
 
-    // Habilitar campos caso tenham sido desabilitados em uma edição anterior
     agendamentoForm.querySelectorAll('input,select,textarea').forEach(el => el.disabled = false);
 
     agendamentoFormContainer.style.display = 'block';
@@ -1120,28 +1066,23 @@ async function renderPainel(app) {
     agendamentosStatsCards.style.display = 'none';
   });
 
-    // Tornar os cards clicáveis para filtrar a tabela
     const statCards = document.querySelectorAll('#agendamentos-stats-cards .painel-stat');
     statCards.forEach(card => {
       card.addEventListener('click', () => {
         const s = card.dataset.status;
         painelAgendFilter = (s === 'all') ? null : s;
-        // Re-renderiza o painel para aplicar o filtro
         renderPainel(app);
       });
     });
 
-  // Prefill empresa automaticamente para clientes ao abrir o formulário
   if (isClient && agendamentoEmpresaInput) {
     btnAddAgendamento.addEventListener('click', () => {
-      // Prioriza usar uma empresa já vinculada a agendamentos anteriores do cliente
       const prev = agendamentos.find(a => a.clienteId === loggedUser.id && a.empresa);
       if (prev) {
         agendamentoEmpresaInput.value = prev.empresa;
         return;
       }
 
-      // Se não houver histórico, tenta inferir a empresa a partir do domínio do e-mail
       const email = (loggedUser && loggedUser.email) ? loggedUser.email : '';
       const domain = email.split('@')[1];
       if (domain) {
@@ -1159,14 +1100,12 @@ async function renderPainel(app) {
 
   if (btnBackAgendamento) {
     btnBackAgendamento.addEventListener('click', () => {
-      // mesmo comportamento de cancelar: volta para a lista
       agendamentoFormContainer.style.display = 'none';
       agendamentosTableWrapper.style.display = 'block';
       agendamentosStatsCards.style.display = 'grid';
     });
   }
 
-  // --- Cadastro/Edição de Agendamento (Submit do Form) ---
   agendamentoForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const id = document.getElementById('agendamento-id').value;
@@ -1188,14 +1127,12 @@ async function renderPainel(app) {
     try {
       let r;
       if (id) {
-        // Modo Edição
         r = await fetch(`${API}/agendamentos/${id}`, {
           method: 'PUT',
           headers: getAuthHeaders({ 'Content-Type': 'application/json' }),
           body: JSON.stringify(body)
         });
       } else {
-        // Modo Cadastro
         r = await fetch(`${API}/agendamentos`, {
           method: 'POST',
           headers: getAuthHeaders({ 'Content-Type': 'application/json' }),
@@ -1218,8 +1155,6 @@ async function renderPainel(app) {
     }
   });
 
-
-  // --- Visualizar e gerenciar mensagens de contato (apenas para equipe) ---
   document.querySelectorAll('#tab-content-contatos .btn-action.view-contato').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = parseInt(btn.dataset.id);
@@ -1289,7 +1224,6 @@ async function renderPainel(app) {
     });
   });
 
-  // --- Exibição/Ocultação do Formulário de Serviços ---
   if (!isStaff && btnAddServico) {
     btnAddServico.style.display = 'none';
   }
@@ -1308,7 +1242,6 @@ async function renderPainel(app) {
       servicesTableWrapper.style.display = 'block';
     });
 
-    // --- Cadastro/Edição de Serviço (Submit do Form) ---
     serviceForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const id = document.getElementById('service-id').value;
@@ -1320,7 +1253,6 @@ async function renderPainel(app) {
       const icone = document.getElementById('service-icone').value;
       const itensInput = document.getElementById('service-itens').value;
 
-      // Tratamento dos itens inclusos
       const itens = itensInput ? itensInput.split(',').map(i => i.trim()).filter(i => i.length > 0) : [];
       const body = { titulo, categoria, descricao, preco, duracao, icone, itens };
 
@@ -1356,7 +1288,6 @@ async function renderPainel(app) {
     });
   }
 
-  // --- Editar Serviço ---
   document.querySelectorAll('#tab-content-servicos .btn-action.edit').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = parseInt(btn.dataset.id);
@@ -1378,25 +1309,28 @@ async function renderPainel(app) {
     });
   });
 
-  // --- Excluir Serviço ---
   document.querySelectorAll('#tab-content-servicos .btn-action.delete').forEach(btn => {
-    btn.addEventListener('click', async () => {
+    btn.addEventListener('click', () => {
       const id = btn.dataset.id;
-      if (!confirm('Deseja realmente excluir este serviço? Esta ação não pode ser desfeita.')) return;
-
-      try {
-        const r = await fetch(`${API}/servicos/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
-        const d = await r.json();
-        if (r.ok) {
-          showToast(d.mensagem || 'Serviço excluído.');
-          await renderPainel(app);
-          document.getElementById('tab-btn-servicos').click();
-        } else {
-          showToast(d.erro || 'Erro ao excluir serviço.', 'error');
+      openConfirmModal({
+        title: 'Excluir serviço',
+        message: 'Deseja realmente excluir este serviço? Esta ação não pode ser desfeita.',
+        onConfirm: async () => {
+          try {
+            const r = await fetch(`${API}/servicos/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
+            const d = await r.json();
+            if (r.ok) {
+              showToast(d.mensagem || 'Serviço excluído.');
+              await renderPainel(app);
+              document.getElementById('tab-btn-servicos').click();
+            } else {
+              showToast(d.erro || 'Erro ao excluir serviço.', 'error');
+            }
+          } catch {
+            showToast('Erro de conexão.', 'error');
+          }
         }
-      } catch {
-        showToast('Erro de conexão.', 'error');
-      }
+      });
     });
   });
 
@@ -1426,7 +1360,6 @@ async function renderPainel(app) {
     });
   }
 
-  // --- Botão de Logout ---
   document.getElementById('btn-logout').addEventListener('click', () => {
     loggedUser = null; 
     localStorage.removeItem('cesovat_user');
@@ -1435,6 +1368,5 @@ async function renderPainel(app) {
   });
 }
 
-// --- Init ---
 updateAuthUI();
 renderPage('home');

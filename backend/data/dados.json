@@ -176,18 +176,8 @@
       "servicoId": 2,
       "data": "2026-07-16",
       "horario": "10:30",
-      "status": "cancelado",
+      "status": "pendente",
       "observacoes": "Exame periódico anual"
-    },
-    {
-      "id": 3,
-      "paciente": "Carlos Eduardo Lima",
-      "empresa": "Metalúrgica Sul S.A.",
-      "servicoId": 6,
-      "data": "2026-07-17",
-      "horario": "14:00",
-      "status": "confirmado",
-      "observacoes": "Exposição a ruído > 85dB"
     },
     {
       "id": 5,
@@ -198,17 +188,6 @@
       "horario": "08:00",
       "status": "realizado",
       "observacoes": "",
-      "clienteId": 5
-    },
-    {
-      "id": 6,
-      "paciente": "Maria Ferreira",
-      "empresa": "Ferreira Costa",
-      "servicoId": 2,
-      "data": "2026-07-08",
-      "horario": "07:15",
-      "status": "confirmado",
-      "observacoes": "Exame periodo, por favor priorizar o atendimento.",
       "clienteId": 5
     },
     {
@@ -229,7 +208,7 @@
       "servicoId": 5,
       "data": "2026-07-09",
       "horario": "08:45",
-      "status": "pendente",
+      "status": "cancelado",
       "observacoes": "Por favor realizar o atendimento com atencao ",
       "clienteId": 5
     },
@@ -240,7 +219,7 @@
       "servicoId": 1,
       "data": "2026-07-13",
       "horario": "10:20",
-      "status": "pendente",
+      "status": "confirmado",
       "observacoes": "teste agendamento",
       "clienteId": 5
     }
@@ -371,16 +350,6 @@
   },
   "contatoMensagens": [
     {
-      "id": 1,
-      "nome": "Teste",
-      "email": "teste@exemplo.com",
-      "telefone": "(87) 99999-9999",
-      "empresa": "Empresa X",
-      "assunto": "Teste de contato",
-      "mensagem": "Olá, isso é um teste.",
-      "criadoEm": "2026-07-04T02:42:03.900Z"
-    },
-    {
       "id": 2,
       "nome": "Paulo ",
       "email": "paulo@gmail.com",
@@ -390,7 +359,7 @@
       "mensagem": "Prezada equipe,Gostaria de solicitar um orçamento para a realização de exames médicos ocupacionais para a nossa empresa.",
       "criadoEm": "2026-07-04T02:57:41.713Z",
       "status": "contatado",
-      "contatadoEm": "2026-07-04T03:02:14.547Z"
+      "contatadoEm": "2026-07-04T03:28:41.816Z"
     }
   ]
 }
